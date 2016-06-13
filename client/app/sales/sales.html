@@ -1,0 +1,98 @@
+<div class="container">
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">Sales</h1>
+			<button id='newformbutton' ng-if='isAgency()' onclick="showNewForm();">Tambah Data Baru</button>
+			<div id='newformdiv' style='display:none' ng-if='isAgency()' >
+				<div class='panel panel-default'>
+					<div class='panel-body'>
+						<div class="col-lg-12">
+
+								<div ng-if='isAgency()' ng-include="'app/sales/_sales_form.html'"></div>
+							
+						</div>
+					</div>
+				</div>
+			</div>
+			<br />
+			<br />
+			<table class='table table-bordered table-hover'>
+				<thead>
+					<tr>
+						<th>No.</th>
+						<th>Tanggal Penyerahan</th>
+						<th>SO</th>
+						<th>STO</th>
+						<th>Nama Pelanggan</th>
+						<th>Email</th>
+	      		<!--th>Tempat Lahir</th>
+	      		<th>Tanggal Lahir</th>
+	      		<th>Profesi</th>
+	      		<th>Identitas</th>
+	      		<th>No. Identitas</th>
+	      		<th>Kadaluarsa Identitas</th>
+	      		<th>Nama Ibu Kandung</th>
+	      			<th>Alamat Instalasi</th --> 
+	      			<th>K-Contact</th>
+	      			<th>Paket</th>
+	      			<th>Nama Sales</th>
+	      			<th>Agency</th>
+	      			<!-- th>Keterangan</th -->
+	      			<th>Hasil Verifikasi</th>
+	      		<!-- th>Kelurahan</th>
+	      		<th>Nomor Referensi</th>
+	      		<th>ODP Referensi</th>
+	      		<th>Latitude</th>
+	      		<th>Longitude</th>
+	      		<th>Manja</th -->
+	      			<th>Status</th>
+                  <th>File</th>
+	      			<th>&nbsp;</th>
+	      		<!--th>No SC</th>
+	      		<th>No Pots</th>
+	      		<th>No Internet</th>
+	      		<th>Ket Input</th -->
+	      		</tr>
+	      	</thead>
+	      	<tbody>
+	      		<tr ng-repeat='sale in salesData'>
+	      			<td>{{sale._id}}</td>
+	      			<td>{{sale.tanggal_penyerahan | amDateFormat:'D MMM YYYY'}}</td>
+	      			<td>{{sale.so}}</td>
+	      			<td>{{sale.sto}}</td>
+	      			<td>{{sale.panggilan}} {{sale.nama_pelanggan}}</td>
+	      			<td>{{sale.email}}</td>
+	      			<td>{{sale.k-contact}}</td>
+	      			<td>{{sale.paket}}</td>
+	      			<td>{{sale.nama_sales}}</td>
+	      			<td>{{sale.nama_agency}}</td>
+	      			<td>{{sale.hasil_verifikasi}}</td>
+	      			<td>{{sale.status}}</td>
+                  <td>
+                     <div ng-if="isSameAgency(sale)">
+                        <button ng-if="sale.file_ktp == null || sale.file_ktp == ''" accept="image/*" ngf-max-size="10MB" type="file" class="btn btn-primary" ngf-select="upload($file,sale)">Upload on file select</button>
+                        <span ng-if="sale.file_ktp != null && sale.file_ktp != ''"> File terupload </span>
+                     </div>
+                  </td>
+	      			<td>
+	      				<a ng-if="canAmbil(sale)" ng-click='ambil(sale)' style='cursor: pointer;'>Ambil</a>
+	      				<a ng-if="isAdmin()" ui-sref='viewSales({id: sale._id})' style='cursor: pointer;'>Lihat</a>
+	      			</td>
+	      		</tr>
+	      	</tbody>
+	      </table>
+	  </div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	function showNewForm() {
+		$('#newformdiv').css('display','block');
+		$('#newformbutton').css('display','none');
+	}
+
+	function hideNewForm() {
+		$('#newformdiv').css('display','none');
+		$('#newformbutton').css('display','block');	
+	}
+</script>

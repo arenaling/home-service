@@ -1,0 +1,28 @@
+<form class="form-horizontal" name="form" ng-submit='updateSales()'>
+	<div class='col-lg-6'>
+		<div class="form-group">
+			<label for="hasil_verifikasi" class="col-sm-4 control-label">Hasil Verifikasi</label>
+			<div class="col-sm-8">
+				<select name='hasil_verifikasi' class='form-control' ng-model='sales.hasil_verifikasi'>
+					<option value='OK'>OK</option>
+					<option value='NOT OK'>NOT OK</option>
+					<option value='RNA'>RNA</option>
+				</select>
+			</div>
+		</div>
+	</div>
+	<div class='col-lg-6'>
+		<div class="form-group">
+			<label for="detail_hasil_verifikasi" class="col-sm-4 control-label">Detail Hasil Verifikasi</label>
+			<div class="col-sm-8">
+				<textarea name='detail_hasil_verifikasi' class='form-control' ng-model='sales.detail_hasil_verifikasi' id="detail_hasil_verifikasi"></textarea>
+			</div>
+		</div>
+	</div>
+
+	<div style='width:100%;text-align: right;'>
+		<button type="button" class="btn btn-primary" ng-click='lepas(sales)'>Lepas</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<button type="submit" class="btn btn-primary">Simpan</button>
+	</div>
+</form>

@@ -1,0 +1,36 @@
+<form class="form-horizontal" name="form" ng-submit='updateSales()'>
+	<div class='col-lg-6'>
+		<div class="form-group">
+			<label for="nomor_sc" class="col-sm-4 control-label">No SC</label>
+			<div class="col-sm-8">
+				<input type='text' name='nomor_sc' class='form-control' ng-model='sales.nomor_sc' id="nomor_sc" placeholder="No SC" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="nomor_pots" class="col-sm-4 control-label">No POTS</label>
+			<div class="col-sm-8">
+				<input type='text' name='nomor_pots' class='form-control' ng-model='sales.nomor_pots' id="nomor_pots" placeholder="No POTS" />
+			</div>
+		</div>
+	</div>
+	<div class='col-lg-6'>
+		<div class="form-group">
+			<label for="nomor_internet" class="col-sm-4 control-label">No Internet</label>
+			<div class="col-sm-8">
+				<input type='text' name='nomor_internet' class='form-control' ng-model='sales.nomor_internet' id="nomor_internet" placeholder="No Internet" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="status" class="col-sm-4 control-label">status</label>
+			<div class="col-sm-8">
+				<input type='text' name='status' class='form-control' ng-model='sales.status' id="status" placeholder="Status" />
+			</div>
+		</div>
+	</div>
+
+	<div style='width:100%;text-align: right;'>
+		<button type="button" class="btn btn-primary" ng-click='lepas(sales)'>Lepas</button>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+		<button type="submit" class="btn btn-primary">Simpan</button>
+	</div>
+</form>

@@ -1,0 +1,225 @@
+<form class="form-horizontal" name="form" ng-submit='addSales($state)'>
+	<div class='col-lg-6'>
+		<div class="form-group">
+			<label for="so" class="col-sm-4 control-label">SO</label>
+			<div class="col-sm-8">
+				<select name='so' class='form-control' ng-model='sales.so'>
+					<option value='MYR'>MYR</option>
+					<option value='IJK'>IJK</option>
+					<option value='RKT'>RKT</option>
+					<option value='JGR'>JGR</option>
+					<option value='GBG'>GBG</option>
+					<option value='MGO'>MGO</option>
+					<option value='TDS'>TDS</option>
+					<option value='KBL'>KBL</option>
+					<option value='LKS'>LKS</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="telepon" class="col-sm-4 control-label">Telepon</label>
+			<div class="col-sm-8">
+				<input type='text' name='telepon' class='form-control' ng-model='sales.telepon' id="telepon" placeholder="Telepon" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="panggilan" class="col-sm-4 control-label">Panggilan</label>
+			<div class="col-sm-8">
+				<select name='panggilan' id='panggilan' class='form-control' ng-model='sales.panggilan'>
+					<option value='Tuan'>Tuan</option>
+					<option value='Nyonya'>Nyonya</option>
+					<option value='Nona'>Nona</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for='email' class="col-sm-4 control-label">Email</label>
+
+			<div class="col-sm-8">
+				<input type="email" name="email" class="form-control" ng-model="sales.email" placeholder="Email" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="tempat_lahir" class="col-sm-4 control-label">Tempat Lahir</label>
+			<div class="col-sm-8">
+				<input type='text' name='tempat_lahir' class='form-control' ng-model='sales.tempat_lahir' id="tempat_lahir" placeholder="Tempat Lahir" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="identitas" class="col-sm-4 control-label">Identitas</label>
+			<div class="col-sm-8">
+				<select name='identitas' id='identitas' class='form-control' ng-model='sales.identitas'>
+					<option value='KTP'>KTP</option>
+					<option value='SIM'>SIM</option>
+					<option value='Passport'>Passport</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="kadaluarsa_identitas" class="col-sm-4 control-label">Kadaluarsa Identitas</label>
+			<div class="col-sm-8">
+				<input type='text' name='kadaluarsa_identitas' class='form-control' ng-model='sales.kadaluarsa_identitas' id="kadaluarsa_identitas" placeholder="Tanggal Kadaluarsa Identitas" data-date-format="yyyy-mm-dd" />
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="alamat_instalasi" class="col-sm-4 control-label">Alamat Instalasi</label>
+			<div class="col-sm-8">
+				<textarea name='alamat_instalasi' class='form-control' ng-model='sales.alamat_instalasi' id="alamat_instalasi"></textarea>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="paket" class="col-sm-4 control-label">Paket</label>
+			<div class="col-sm-8">
+				<input type='text' name='paket' class='form-control' ng-model='sales.paket' id="paket" placeholder="Paket" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="nama_sales" class="col-sm-4 control-label">Nama Sales</label>
+			<div class="col-sm-8">
+				<input type='text' name='nama_sales' class='form-control' ng-model='sales.nama_sales' id="nama_sales" placeholder="Nama Sales" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="nomor_referensi" class="col-sm-4 control-label">Nomor Referensi</label>
+			<div class="col-sm-8">
+				<input type='text' name='nomor_referensi' class='form-control' ng-model='sales.nomor_referensi' id="nomor_referensi" placeholder="Nomor Referensi" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="odp_referensi" class="col-sm-4 control-label">ODP Referensi</label>
+			<div class="col-sm-8">
+				<input type='text' name='odp_referensi' class='form-control' ng-model='sales.odp_referensi' id="odp_referensi" placeholder="ODP Referensi" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="manja" class="col-sm-4 control-label">Manja</label>
+			<div class="col-sm-8">
+				<input type='text' name='manja' class='form-control' ng-model='sales.manja' id="manja" placeholder="Manja" />
+			</div>
+		</div>
+	</div>
+
+	<div class='col-lg-6'>
+		<div class="form-group">
+			<label for="sto" class="col-sm-4 control-label">STO</label>
+			<div class="col-sm-8">
+				<select name='sto' class='form-control' ng-model='sales.sto'>
+					<option value='MYR'>MYR</option>
+					<option value='IJK'>IJK</option>
+					<option value='RKT'>RKT</option>
+					<option value='JGR'>JGR</option>
+					<option value='GBG'>GBG</option>
+					<option value='MGO'>MGO</option>
+					<option value='TDS'>TDS</option>
+					<option value='KBL'>KBL</option>
+					<option value='LKS'>LKS</option>
+					<option value='WR'>WR</option>
+					<option value='TPO'>TPO</option>
+					<option value='PRK'>PRK</option>
+					<option value='KND'>KND</option>
+					<option value='KLA'>KLA</option>
+					<option value='BBE'>BBE</option>
+					<option value='KRP'>KRP</option>
+				</select>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="contact_person" class="col-sm-4 control-label">Contact Person</label>
+			<div class="col-sm-8">
+				<input type='text' name='contact_person' class='form-control' ng-model='sales.contact_person' id="contact_person" placeholder="Contact Person" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="nama_pelanggan" class="col-sm-4 control-label">Nama Pelanggan</label>
+			<div class="col-sm-8">
+				<input type='text' name='nama_pelanggan' class='form-control' ng-model='sales.nama_pelanggan' id="nama_pelanggan" placeholder="Nama Pelanggan" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="profesi" class="col-sm-4 control-label">Profesi</label>
+			<div class="col-sm-8">
+				<input type='text' name='profesi' class='form-control' ng-model='sales.profesi' id="profesi" placeholder="Profesi" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="tanggal_lahir" class="col-sm-4 control-label">Tanggal Lahir</label>
+			<div class="col-sm-8">
+				<input type='text' name='tanggal_lahir' class='form-control' ng-model='sales.tanggal_lahir' id="tanggal_lahir" placeholder="Tanggal Lahir" data-date-format="yyyy-mm-dd" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="nomor_identitas" class="col-sm-4 control-label">Nomor Identitas</label>
+			<div class="col-sm-8">
+				<input type='text' name='nomor_identitas' class='form-control' ng-model='sales.nomor_identitas' id="nomor_identitas" placeholder="Nomor Identitas" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="nama_ibu_kandung" class="col-sm-4 control-label">Nama Ibu Kandung</label>
+			<div class="col-sm-8">
+				<input type='text' name='nama_ibu_kandung' class='form-control' ng-model='sales.nama_ibu_kandung' id="nama_ibu_kandung" placeholder="Nama Ibu Kandung" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="kelurahan" class="col-sm-4 control-label">Kelurahan</label>
+			<div class="col-sm-8">
+				<input type='text' name='kelurahan' class='form-control' ng-model='sales.kelurahan' id="kelurahan" placeholder="Kelurahan" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="k_contact" class="col-sm-4 control-label">K Contact</label>
+			<div class="col-sm-8">
+				<input type='text' name='k_contact' class='form-control' ng-model='sales.k_contact' id="k_contact" placeholder="K Contact" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="keterangan" class="col-sm-4 control-label">Keterangan</label>
+			<div class="col-sm-8">
+				<textarea name='keterangan' class='form-control' ng-model='sales.keterangan' id="keterangan"></textarea>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="latitude" class="col-sm-4 control-label">Latitude</label>
+			<div class="col-sm-8">
+				<input type='text' name='latitude' class='form-control' ng-model='sales.latitude' id="latitude" placeholder="Latitude" />
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="longitude" class="col-sm-4 control-label">Longitude</label>
+			<div class="col-sm-8">
+				<input type='text' name='longitude' class='form-control' ng-model='sales.longitude' id="longitude" placeholder="Longitude" />
+			</div>
+		</div>
+	</div>
+	<div style='width:100%;text-align: right;'>
+		<button type="submit" class="btn btn-primary">Simpan</button>
+	</div>
+	<script type="text/javascript">
+		jQuery(document).ready(function() {
+			$('#tanggal_lahir').datepicker({startView: 3});
+			$('#kadaluarsa_identitas').datepicker();
+		});
+	</script>
+
+</form>

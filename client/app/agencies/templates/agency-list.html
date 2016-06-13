@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <h1 class="page-header">Agencies</h1>
+      <button id='newformbutton' ng-if='isAdmin()' ui-sref="newAgency()">Tambah Data Baru</button>
+      <table class='table table-hover'>
+      	<thead>
+	      	<tr>
+	      		<th>No.</th>
+	      		<th>Nama Agency</th>
+	      		<th>Singkatan</th>
+	      		<th>Keterangan</th>
+	      	</tr>
+      	</thead>
+      	<tbody>
+	      	<tr ng-repeat='agency in agencies'>
+	      		<td>{{agency._id}}</td>
+	      		<td>{{agency.name}}</td>
+            <td>{{agency.singkatan}}</td>
+            <td>{{agency.info}}</td>
+	      	</tr>
+      	</tbody>
+      </table>
+    </div>
+  </div>
+</div>
