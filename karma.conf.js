@@ -19,6 +19,7 @@ module.exports = function(config) {
     files: [
       // bower:js
       'client/bower_components/jquery/dist/jquery.js',
+      'client/bower_components/jquery-ui/jquery-ui.js',
       'client/bower_components/angular/angular.js',
       'client/bower_components/angular-resource/angular-resource.js',
       'client/bower_components/angular-cookies/angular-cookies.js',
@@ -27,6 +28,11 @@ module.exports = function(config) {
       'client/bower_components/lodash/dist/lodash.compat.js',
       'client/bower_components/angular-ui-router/release/angular-ui-router.js',
       'client/bower_components/angular-validation-match/dist/angular-validation-match.min.js',
+      'client/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js',
+      'client/bower_components/moment/moment.js',
+      'client/bower_components/angular-moment/angular-moment.js',
+      'client/bower_components/ng-file-upload/ng-file-upload.js',
+      'client/bower_components/ng-file-upload-shim/ng-file-upload-shim.js',
       'client/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       'client/app/app.js',

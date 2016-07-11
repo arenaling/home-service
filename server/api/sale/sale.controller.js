@@ -56,12 +56,42 @@ function handleEntityNotFound(res) {
 function handleError(res, statusCode) {
   statusCode = statusCode || 500;
   return function(err) {
+    console.log(err);
     res.status(statusCode).send(err);
   };
 }
 
 // Gets a list of Sales
 export function index(req, res) {
+  var query = req.query;
+  var limit = 10;
+
+  if(typeof query.status !== 'undefined' && query.status != "") {
+    if(query.status == 1) {
+      query.status = 'Belum Diverifikasi';
+    } else if(query.status == 2) {
+      query.status = 'Sudah Diverifikasi';
+      query.hasil_verifikasi = {$ne: 'NOT OK'};
+    }
+  }
+
+  if(typeof query.page !== 'undefined' && query.page != "") {
+    var page = query.page;
+    var offset = ((page - 1) * limit);
+    delete query.page;
+
+    return Sale.findAll({where: req.query, order: "updatedAt DESC", limit: limit, offset: offset})
+      .then(respondWithResult(res))
+      .catch(handleError(res));
+  } else {
+    return Sale.findAll({where: req.query})
+      .then(respondWithResult(res))
+      .catch(handleError(res));
+  }
+}
+
+// Gets a count of Sales
+export function count(req, res) {
   var query = req.query;
 
   if(typeof query.status !== 'undefined' && query.status != "") {
@@ -73,8 +103,18 @@ export function index(req, res) {
     }
   }
 
-  return Sale.findAll({where: req.query})
-    .then(respondWithResult(res))
+  if(typeof query.page !== 'undefined' && query.page != "") {
+    delete query.page;
+  }
+
+  return Sale.count({where: req.query})
+    .then(function(count) {
+      var statusCode = 200;
+
+      var ret = {"count": count};
+
+      res.status(statusCode).json(ret);
+    })
     .catch(handleError(res));
 }
 
@@ -129,10 +169,10 @@ function saveFile(res, file) {
   return function(entity){
     var newPath = '/assets/uploads/' + path.basename(file.path);
     entity.file_ktp = newPath;
-    return entity.save().spread(function(updated) {
-      console.log(updated);
-      return updated;
-    });
+    return entity.save();//.spread(function(updated) {
+    //   console.log(updated);
+    //   return updated;
+    // });
   }
 }
 

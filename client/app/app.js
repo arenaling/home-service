@@ -11,7 +11,8 @@ angular.module('homeServiceApp', [
   'ui.bootstrap',
   'validation.match',
   'angularMoment',
-  'ngFileUpload'
+  'ngFileUpload',
+  'ui.bootstrap'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider
@@ -19,6 +20,9 @@ angular.module('homeServiceApp', [
 
     $locationProvider.html5Mode(true);
   })
+  // .config(function(paginationTemplateProvider) {
+  //   paginationTemplateProvider.setString(require('./pagination.tpl.html'));
+  // })
   .run(function(amMoment) {
     amMoment.changeLocale('id');
 });

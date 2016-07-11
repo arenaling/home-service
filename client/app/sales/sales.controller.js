@@ -14,14 +14,31 @@
 		if(currentUser.role == 'agencies') {
 			queryQuery['id_agencies'] = currentUser.id_agency;
 		} else if(currentUser.role == 'verificator') {
-         queryQuery['status'] = "1";
-      } else if(currentUser.role == 'inputer') {
-         queryQuery['status'] = "2";
-      }
+       queryQuery['status'] = "1";
+    } else if(currentUser.role == 'inputer') {
+       queryQuery['status'] = "2";
+    }
 
-		$scope.salesData = Sales.query(queryQuery);
-		$scope.sales = {'panggilan': 'Tuan'};
+		// $scope.salesData = Sales.query(queryQuery);
+    $scope.pagination = {
+        current: 1
+    };
+
+    querySales(queryQuery, 1);
+    $scope.sales = {'panggilan': 'Tuan'};
 		$scope.currentUser = currentUser;
+
+    $scope.pageChanged = function() {
+      querySales(queryQuery, $scope.pagination.current);
+    };
+
+    function querySales(queryQuery, pageNumber) {
+      queryQuery['page'] = pageNumber;
+      $scope.salesData = Sales.query(queryQuery);
+      var count = Sales.count(queryQuery, function() {
+        $scope.totalItems = count.count;
+      });
+    }
 
 		if(currentUser.id_agency > 0) {
 			agency = Agencies.get({id: currentUser.id_agency});
@@ -35,9 +52,9 @@
 			return currentUser.role == 'agencies';
 		};
 
-      $scope.isSameAgency = function(sales) {
-         return currentUser.role == 'agencies' && currentUser.id_agency == sales.id_agencies;
-      };
+    $scope.isSameAgency = function(sales) {
+       return currentUser.role == 'agencies' && currentUser.id_agency == sales.id_agencies;
+    };
 
 		$scope.isVerificator = function() {
 			return currentUser.role == 'verificator';
@@ -94,7 +111,7 @@
 			});
 		};
 
-      $scope.upload = uploadHander($scope, Upload, $timeout);
+      $scope.upload = uploadHander($scope, $state, Upload, $timeout);
 
 		$scope.ambil = function(sales) {
 			Sales.update({id: sales._id}, {'sedang_diambil': currentUser._id}, function success(value /*, responseHeaders */) {
@@ -150,7 +167,7 @@
             $scope.sales.status = "Sudah Diverifikasi";
             $scope.sales.sedang_diambil = 0;
          }
-			
+
 
 			Sales.update({id: $scope.sales._id}, $scope.sales, function success(value /*, responseHeaders */) {
 				$state.go('sales');
@@ -168,7 +185,7 @@
 		};
 	};
 
-	uploadHander = function ($scope, Upload, $timeout) {
+	uploadHander = function ($scope, $state, Upload, $timeout) {
 		return function(file, sales) {
 			if (file && !file.$error) {
             sales.file = file;
@@ -179,7 +196,10 @@
 
 				file.upload.then(function (response) {
 					$timeout(function () {
-						file.result = response.data;
+						// file.result = response.data;
+            // alert(response);
+
+            $state.reload();
 					});
 				}, function (response) {
 					if (response.status > 0){
@@ -195,4 +215,3 @@
 		};
 	};
 })();
-
