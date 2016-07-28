@@ -28,9 +28,32 @@
     $scope.filters = {
       tanggal: null
     };
+    $scope.csvHeader = [[
+            "_id",        "nama_panggilan",
+            "tanggal_penyerahan",        "so",
+            "sto",        "telepon",
+            "panggilan",        "nama_pelanggan",
+            "contact_person",        "email",
+            "tempat_lahir",        "tanggal_lahir",
+            "profesi",        "identitas",
+            "nomor_identitas",        "kadaluarsa_identitas",
+            "nama_ibu_kandung",        "alamat_instalasi",
+            "k_contact",        "paket",
+            "nama_sales",        "nama_agency",
+            "keterangan",        "hasil_verifikasi",
+            "detail_hasil_verifikasi",        "nama_verificator",
+            "kelurahan",        "nomor_referensi",
+            "odp_referensi",        "latitude",
+            "longitude",        "manja",
+            "nama_inputer",        "nomor_sc",
+            "nomor_pots",        "nomor_internet",
+            "keterangan_inputer",        "status",
+            "updatedAt"
+          ]];
 
     reset_query();
     querySales(queryQuery, 1);
+    prepareCsvData();
     $scope.sales = {'panggilan': 'Tuan'};
 		$scope.currentUser = currentUser;
 
@@ -41,6 +64,8 @@
     function querySales(queryQuery, pageNumber) {
       queryQuery['page'] = pageNumber;
       $scope.salesData = Sales.query(queryQuery);
+      // $scope.salesDataWithHeader = [["nama_panggilan","_id","tanggal_penyerahan","so","sto","telepon","panggilan","nama_pelanggan","contact_person","email","tempat_lahir","tanggal_lahir","profesi","identitas","nomor_identitas","kadaluarsa_identitas","nama_ibu_kandung","alamat_instalasi","k_contact","paket","nama_sales","id_agencies","nama_agency","keterangan","hasil_verifikasi","detail_hasil_verifikasi","verificator","nama_verificator","kelurahan","nomor_referensi","odp_referensi","latitude","longitude","manja","inputer","nama_inputer","nomor_sc","nomor_pots","nomor_internet","keterangan_inputer","file_ktp",","sedang_diambil","createdAt","updatedAt"]];
+      // $scope.salesDataWithHeader = $scope.salesDataWithHeader.concat($scope.salesData);
       var count = Sales.count(queryQuery, function() {
         $scope.totalItems = count.count;
       });
@@ -49,6 +74,41 @@
 		if(currentUser.id_agency > 0) {
 			agency = Agencies.get({id: currentUser.id_agency});
 		}
+
+    function prepareCsvData() {
+      $scope.csv_data = [];
+
+      var copyQuery = queryQuery;
+      delete copyQuery.page;
+      var result = Sales.query(copyQuery).$promise.then(function(result) {
+        var return2 = [];
+        angular.forEach(result, function(row) {
+          return2.push({
+            "_id": row._id,        "nama_panggilan": row.nama_panggilan,
+            "tanggal_penyerahan": row.tanggal_penyerahan,        "so": row.so,
+            "sto": row.sto,        "telepon": row.telepon,
+            "panggilan": row.panggilan,        "nama_pelanggan": row.nama_pelanggan,
+            "contact_person": row.contact_person,        "email": row.email,
+            "tempat_lahir": row.tempat_lahir,        "tanggal_lahir": row.tanggal_lahir,
+            "profesi": row.profesi,        "identitas": row.identitas,
+            "nomor_identitas": row.nomor_identitas,        "kadaluarsa_identitas": row.kadaluarsa_identitas,
+            "nama_ibu_kandung": row.nama_ibu_kandung,        "alamat_instalasi": row.alamat_instalasi,
+            "k_contact": row.k_contact,        "paket": row.paket,
+            "nama_sales": row.nama_sales,        "nama_agency": row.nama_agency,
+            "keterangan": row.keterangan,        "hasil_verifikasi": row.hasil_verifikasi,
+            "detail_hasil_verifikasi": row.detail_hasil_verifikasi,        "nama_verificator": row.nama_verificator,
+            "kelurahan": row.kelurahan,        "nomor_referensi": row.nomor_referensi,
+            "odp_referensi": row.odp_referensi,        "latitude": row.latitude,
+            "longitude": row.longitude,        "manja": row.manja,
+            "nama_inputer": row.nama_inputer,        "nomor_sc": row.nomor_sc,
+            "nomor_pots": row.nomor_pots,        "nomor_internet": row.nomor_internet,
+            "keterangan_inputer": row.keterangan_inputer,        "status": row.status,
+            "updatedAt": row.updatedAt
+          });
+        });
+        $scope.csv_data = return2;
+      });
+    }
 
 		$scope.isAdmin = function() {
 			return currentUser.role == 'admin';
@@ -126,6 +186,7 @@
       }
 
       querySales(queryQuery, 1);
+      prepareCsvData();
     }
 
 		$scope.ambil = function(sales) {

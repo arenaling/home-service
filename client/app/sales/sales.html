@@ -5,6 +5,7 @@
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<button id='newformbutton' ng-if='isAgency()' onclick="showNewForm();">Tambah Data Baru</button>
+					<button id='exportcsvbutton' ng-csv="csv_data" csv-header="csvHeader" filename="sales.csv">Export CSV</button>
 					<br/>
 					<h3> Filters: </h3>
 					<form class="form-inline">

@@ -12,7 +12,8 @@ angular.module('homeServiceApp', [
   'validation.match',
   'angularMoment',
   'ngFileUpload',
-  'ui.bootstrap'
+  'ui.bootstrap',
+  'ngCsv'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

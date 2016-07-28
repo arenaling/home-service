@@ -75,15 +75,15 @@ export function index(req, res) {
     }
   }
 
+  if(typeof query.tanggal !== 'undefined' && query.tanggal != "") {
+    query.tanggal_penyerahan = {$gte: ""+query.tanggal+" 00:00:00", $lte: ""+query.tanggal+" 23:59:59"};
+    delete query.tanggal;
+  }
+
   if(typeof query.page !== 'undefined' && query.page != "") {
     var page = query.page;
     var offset = ((page - 1) * limit);
     delete query.page;
-
-    if(typeof query.tanggal !== 'undefined' && query.tanggal != "") {
-      query.tanggal_penyerahan = {$gte: ""+query.tanggal+" 00:00:00", $lte: ""+query.tanggal+" 23:59:59"};
-      delete query.tanggal;
-    }
 
     return Sale.findAll({where: req.query, order: "updatedAt DESC", limit: limit, offset: offset})
       .then(respondWithResult(res))
@@ -110,6 +110,11 @@ export function count(req, res) {
 
   if(typeof query.page !== 'undefined' && query.page != "") {
     delete query.page;
+  }
+
+  if(typeof query.tanggal !== 'undefined' && query.tanggal != "") {
+    query.tanggal_penyerahan = {$gte: ""+query.tanggal+" 00:00:00", $lte: ""+query.tanggal+" 23:59:59"};
+    delete query.tanggal;
   }
 
   return Sale.count({where: req.query})
