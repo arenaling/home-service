@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-				
+
 				<div class='col-lg-6'>
 					<div class="form-group">
 						<label for="so" class="col-sm-4 control-label">SO</label>
@@ -85,6 +85,45 @@
 						<label for="nama_verificator" class="col-sm-4 control-label">Verificator</label>
 						<div class="col-sm-8">
 							<p>{{sales.nama_verificator}}</p>
+						</div>
+					</div>
+
+					<div ng-if="sales.status != 'Belum Diverifikasi'">
+						<div class="form-group">
+							<label for="nama_verificator" class="col-sm-4 control-label">Hasil Verifikasi</label>
+							<div class="col-sm-8">
+								<p>{{sales.hasil_verifikasi}}</p>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="nama_verificator" class="col-sm-4 control-label">Detail Verifikasi</label>
+							<div class="col-sm-8">
+								<p>{{sales.detail_hasil_verifikasi}}</p>
+							</div>
+						</div>
+					</div>
+
+					<div ng-if="sales.status != 'Belum Diverifikasi' && sales.status != 'Sudah Diverifikasi'">
+						<div class="form-group">
+							<label for="nama_verificator" class="col-sm-4 control-label">No SC</label>
+							<div class="col-sm-8">
+								<p>{{sales.nomor_sc}}</p>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="nama_verificator" class="col-sm-4 control-label">No POTS</label>
+							<div class="col-sm-8">
+								<p>{{sales.nomor_pots}}</p>
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label for="nama_verificator" class="col-sm-4 control-label">No Internet</label>
+							<div class="col-sm-8">
+								<p>{{sales.nomor_internet}}</p>
+							</div>
 						</div>
 					</div>
 				</div>

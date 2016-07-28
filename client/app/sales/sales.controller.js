@@ -11,19 +11,25 @@
 		var agency = {};
 		var queryQuery = {};
 
-		if(currentUser.role == 'agencies') {
-			queryQuery['id_agencies'] = currentUser.id_agency;
-		} else if(currentUser.role == 'verificator') {
-       queryQuery['status'] = "1";
-    } else if(currentUser.role == 'inputer') {
-       queryQuery['status'] = "2";
+    var reset_query = function() {
+  		if(currentUser.role == 'agencies') {
+  			queryQuery['id_agencies'] = currentUser.id_agency;
+  		} else if(currentUser.role == 'verificator') {
+         queryQuery['status'] = "1";
+      } else if(currentUser.role == 'inputer') {
+         queryQuery['status'] = "2";
+      }
     }
 
 		// $scope.salesData = Sales.query(queryQuery);
     $scope.pagination = {
         current: 1
     };
+    $scope.filters = {
+      tanggal: null
+    };
 
+    reset_query();
     querySales(queryQuery, 1);
     $scope.sales = {'panggilan': 'Tuan'};
 		$scope.currentUser = currentUser;
@@ -111,7 +117,16 @@
 			});
 		};
 
-      $scope.upload = uploadHander($scope, $state, Upload, $timeout);
+    $scope.upload = uploadHander($scope, $state, Upload, $timeout);
+
+    $scope.filter = function() {
+      reset_query();
+      for (var attrname in $scope.filters) {
+        queryQuery[attrname] = $scope.filters[attrname];
+      }
+
+      querySales(queryQuery, 1);
+    }
 
 		$scope.ambil = function(sales) {
 			Sales.update({id: sales._id}, {'sedang_diambil': currentUser._id}, function success(value /*, responseHeaders */) {
@@ -161,6 +176,7 @@
 				$scope.sales.inputer = currentUser._id;
 				$scope.sales.nama_inputer = currentUser.name;
 				$scope.sales.sedang_diambil = 0;
+        $scope.sales.status = "Sudah Diinput";
 			} else if(currentUser.role == 'verificator') {
             $scope.sales.verificator = currentUser._id;
             $scope.sales.nama_verificator = currentUser.name;

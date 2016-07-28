@@ -80,6 +80,11 @@ export function index(req, res) {
     var offset = ((page - 1) * limit);
     delete query.page;
 
+    if(typeof query.tanggal !== 'undefined' && query.tanggal != "") {
+      query.tanggal_penyerahan = {$gte: ""+query.tanggal+" 00:00:00", $lte: ""+query.tanggal+" 23:59:59"};
+      delete query.tanggal;
+    }
+
     return Sale.findAll({where: req.query, order: "updatedAt DESC", limit: limit, offset: offset})
       .then(respondWithResult(res))
       .catch(handleError(res));
