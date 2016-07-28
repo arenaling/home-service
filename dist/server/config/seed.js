@@ -4,9 +4,15 @@
  */
 
 'use strict';
-import sqldb from '../sqldb';
+
+var _sqldb = require('../sqldb');
+
+var _sqldb2 = _interopRequireDefault(_sqldb);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
 // var Thing = sqldb.Thing;
-var User = sqldb.User;
+var User = _sqldb2.default.User;
 //
 // Thing.sync()
 //   .then(() => {
@@ -43,17 +49,17 @@ var User = sqldb.User;
 //     }]);
 //   });
 
-User.sync();
-  .then(() => User.destroy({ where: {} }))
-  .then(() => {
-    User.bulkCreate([{
-      provider: 'local',
-      role: 'admin',
-      name: 'Admin',
-      email: 'endahpus@gmail.com',
-      password: 'asdf1234'
-    }])
-    .then(() => {
-      console.log('finished populating users');
-    });
+User.sync().then(function () {
+  return User.destroy({ where: {} });
+}).then(function () {
+  User.bulkCreate([{
+    provider: 'local',
+    role: 'admin',
+    name: 'Admin',
+    email: 'endahpus@gmail.com',
+    password: 'asdf1234'
+  }]).then(function () {
+    console.log('finished populating users');
   });
+});
+//# sourceMappingURL=seed.js.map

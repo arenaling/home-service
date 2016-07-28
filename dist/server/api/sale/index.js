@@ -11,6 +11,7 @@ var multiparty = require('connect-multiparty');
 router.post('/:id/upload', multiparty(uploadOptions), controller.upload);
 
 router.get('/', controller.index);
+router.get('/count', controller.count);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.put('/:id', controller.update);
